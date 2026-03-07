@@ -21,3 +21,16 @@ bak/*
 simple_mcp_client_stream.py
 mcp_chatbot_termial.py
 mcp_chatbot_stream.py
+
+# Script/terminal recording artifacts
+typescript
+^C
+
+# Data files (user-provided, not committed)
+data/*.json
+!data/.gitkeep
+
+# IDE
+.idea/
+.vscode/
+*.swp

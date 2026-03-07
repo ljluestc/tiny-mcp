@@ -1,0 +1,20 @@
+{
+    "mcpServers": {
+        "time": {
+            "command": "python",
+            "args": ["services/time_service.py"]
+        },
+        "weather": {
+            "command": "python",
+            "args": ["services/weather_service_us.py"]
+        },
+        "calculator": {
+            "command": "python",
+            "args": ["services/calculator_service.py"]
+        },
+        "devops": {
+            "command": "python",
+            "args": ["services/devops_knowledge_service.py"]
+        }
+    }
+}

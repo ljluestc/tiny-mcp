@@ -1,11 +1,14 @@
 import json
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 from typing import Any, Optional
 
+# Load .env from project root (two levels up from this file)
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 load_dotenv(
-    dotenv_path=".env", 
-    override=True
+    dotenv_path=_PROJECT_ROOT / ".env",
+    override=True,
 )
 
 class Configuration:
