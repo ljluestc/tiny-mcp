@@ -24,8 +24,9 @@ from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 from pathlib import Path
 
-# Load .env from the script's directory
-load_dotenv(Path(__file__).parent / ".env")
+# Load .env from script dir (project root) — dotenv loads relative to CWD by default
+_PROJECT_ROOT = Path(__file__).resolve().parent
+load_dotenv(_PROJECT_ROOT / ".env")
 
 
 class AnthropicMCPClient:
@@ -197,7 +198,11 @@ async def main():
         print(f"[ERR] {e}")
         sys.exit(1)
 
-    api_key = os.getenv("ANTHROPIC_API_KEY") or os.getenv("ANTHROPIC_KEY", "")
+    api_key = (
+        os.getenv("ANTHROPIC_API_KEY")
+        or os.getenv("ANTHROPIC_KEY")
+        or ""
+    )
     model = os.getenv("LLM_MODEL_NAME", "claude-sonnet-4-20250514")
 
     if not api_key:
