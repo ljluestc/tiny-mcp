@@ -35,6 +35,18 @@
           "run",
           "calculator_service.py"
         ]
+      },
+      "devops_knowledge": {
+        "name": "DevOps & LLM Knowledge",
+        "type": "stdio",
+        "description": "DevOps/SRE and LLM interview Q&A search",
+        "command": "uv",
+        "args": [
+          "--directory",
+          ".",
+          "run",
+          "services/devops_knowledge_service.py"
+        ]
       }
     },
     "defaultServer": "get_current_time",
