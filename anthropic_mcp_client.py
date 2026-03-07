@@ -197,11 +197,11 @@ async def main():
         print(f"[ERR] {e}")
         sys.exit(1)
 
-    api_key = os.getenv("ANTHROPIC_API_KEY", "")
+    api_key = os.getenv("ANTHROPIC_API_KEY") or os.getenv("ANTHROPIC_KEY", "")
     model = os.getenv("LLM_MODEL_NAME", "claude-sonnet-4-20250514")
 
     if not api_key:
-        print("[ERR] ANTHROPIC_API_KEY not set. Add it to .env or environment.")
+        print("[ERR] ANTHROPIC_API_KEY or ANTHROPIC_KEY not set. Add to .env or environment.")
         sys.exit(1)
 
     print(f"[SYS] Model: {model}")
