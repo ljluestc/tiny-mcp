@@ -23,8 +23,20 @@
           "run",
           "weather_service_us.py"
         ]
+      },
+      "calculator": {
+        "name": "Calculator",
+        "type": "stdio",
+        "description": "Math calculations and unit conversions",
+        "command": "uv",
+        "args": [
+          "--directory",
+          "./services",
+          "run",
+          "calculator_service.py"
+        ]
       }
     },
     "defaultServer": "get_current_time",
-    "system": "You are a helpful assistant that can use tools to get current time and weather information."
+    "system": "You are a helpful assistant with access to tools for time, weather, and math."
 }
