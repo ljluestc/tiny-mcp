@@ -21,8 +21,11 @@ async def get_current_time(timezone: Optional[str] = None) -> str:
     try:
         # 输入清理和规范化
         if timezone:
-            # 去除前后空格并替换下划线为斜杠（处理常见笔误）
-            cleaned_tz = timezone.strip().replace("_", "/")
+            cleaned_tz = timezone.strip()
+            # Only convert underscore to slash if no slash present
+            # (handles input like "Asia_Shanghai" but preserves "America/New_York")
+            if "/" not in cleaned_tz:
+                cleaned_tz = cleaned_tz.replace("_", "/")
             tz = ZoneInfo(cleaned_tz)
         else:
             tz = datetime.now().astimezone().tzinfo

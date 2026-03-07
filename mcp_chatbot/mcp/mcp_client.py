@@ -94,9 +94,7 @@ class MCPClient:
         tools_response = await self.session.list_tools()
         return [
             MCPTool(tool.name, tool.description, tool.inputSchema)
-            for item in tools_response
-            if isinstance(item, tuple) and item[0] == "tools"
-            for tool in item[1]  # 解析工具数据
+            for tool in tools_response.tools
         ]
     
     async def execute_tool(
