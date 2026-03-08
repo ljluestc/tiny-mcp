@@ -47,6 +47,7 @@ def _load_datasets():
     ]
     llm_files = [
         "llm_interview_note_qa.json",
+        "llm_interview_note_qa.jsonl",  # fallback when .json not present
     ]
 
     for search_dir in search_dirs:
@@ -62,7 +63,12 @@ def _load_datasets():
             p = search_dir / fname
             if p.exists() and "llm" not in _datasets:
                 with open(p, encoding="utf-8") as f:
-                    _datasets["llm"] = json.load(f)
+                    if fname.endswith(".jsonl"):
+                        _datasets["llm"] = [
+                            json.loads(line) for line in f if line.strip()
+                        ]
+                    else:
+                        _datasets["llm"] = json.load(f)
                 break
 
     # If still not found, create a bundled fallback directory
