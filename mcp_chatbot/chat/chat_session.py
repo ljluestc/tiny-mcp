@@ -330,10 +330,10 @@ class ChatSession:
             tool_calls = []
             for idx, tool_call_data in enumerate(tool_call_data_list):
                 tool_name = tool_call_data["tool"]
-                argments = tool_call_data["arguments"]
+                arguments = tool_call_data["arguments"]
 
                 yield ("tool_call", tool_name)
-                yield ("tool_arguments", json.dumps(argments))
+                yield ("tool_arguments", json.dumps(arguments))
 
                 # 执行工具调用
                 yield ("tool_execution", f"Executing tool {tool_name} ...")

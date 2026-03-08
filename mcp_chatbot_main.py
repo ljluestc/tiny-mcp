@@ -1,5 +1,4 @@
 import asyncio
-import json
 from pathlib import Path
 
 from mcp_chatbot import Configuration, ChatSession, LLMService, MCPClient

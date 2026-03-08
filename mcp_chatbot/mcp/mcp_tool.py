@@ -2,7 +2,7 @@ from typing import Any
 
 
 class MCPTool:
-    """ MCP 工具, 更壮工具信息
+    """ MCP 工具, 封装工具信息
     """
     def __init__(
         self, 

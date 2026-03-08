@@ -5,13 +5,10 @@ Prompts: prompt template
 """
 
 from datetime import datetime
-import glob
 import json
 import os
-from typing import List
-from mcp import Resource
+
 from mcp.server.fastmcp import FastMCP
-from mcp.types import Resource, TextContent, EmbeddedResource
 
 
 # 初始化 FastMCP 服务器
