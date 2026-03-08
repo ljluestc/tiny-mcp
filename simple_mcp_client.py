@@ -3,6 +3,7 @@ import os
 import sys
 import json
 from contextlib import AsyncExitStack
+from pathlib import Path
 from typing import Optional, List, Dict, Any
 
 from mcp import ClientSession, StdioServerParameters
@@ -10,7 +11,8 @@ from mcp.client.stdio import stdio_client
 from openai import AsyncOpenAI
 from dotenv import load_dotenv
 
-load_dotenv()
+_PROJECT_ROOT = Path(__file__).resolve().parent
+load_dotenv(dotenv_path=_PROJECT_ROOT / ".env", override=True)
 
 class MCPClient:
     def __init__(
@@ -149,7 +151,7 @@ class MCPClient:
         # print(f"[SYS]: 可用 Prompt: {prompts_names}")
         print(f"[SYS]: 可用 Prompt: {self.prompts_dict}")
 
-    async def selcect_prompt_template(self, user_question: str) -> str:
+    async def select_prompt_template(self, user_question: str) -> str:
         """ 根据用户问题选择 prompt 模板
         """
         # 需要详细回答的指示词
@@ -217,7 +219,7 @@ class MCPClient:
         user_text = query.strip()
         # 1.选择 prompt
         if self.prompts_dict:
-            template_name = await self.selcect_prompt_template(user_text)
+            template_name = await self.select_prompt_template(user_text)
             prompt_response = await self.session.get_prompt(
                 template_name, arguments={"question": user_text}
             )
@@ -324,7 +326,7 @@ class MCPClient:
             try:
                 await self.exit_stack.aclose()
                 self.session = None
-                self.stdio_context = None
+                self.stdio_transport = None
             except Exception as e:
                 print(f"Error during cleanup of server: {e}")
 
